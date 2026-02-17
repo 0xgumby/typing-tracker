@@ -5,5 +5,5 @@
   "minAppVersion": "0.15.0",
   "description": "Shows a temporary timestamp when you stop typing",
   "author": "0xGumby",
-  "isDesktopOnly": false
+  "isDesktopOnly": true
 }
