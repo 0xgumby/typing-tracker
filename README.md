@@ -9,6 +9,7 @@ A lightweight Obsidian plugin that shows a temporary timestamp when you stop typ
   
 - RGB animation (my favorite), single color, and gradient color modes
 - Optional Google Font or custom font URL support
+ - No telemetry. Network requests are only made when Google Fonts or a custom remote font URL is enabled.
 <img width="676" height="510" alt="image" src="https://github.com/user-attachments/assets/42046048-f302-46a7-80af-ec748fcc50c9" />
 
 ## Development

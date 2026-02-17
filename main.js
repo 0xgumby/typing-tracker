@@ -157,6 +157,9 @@ class TypingTrackerPlugin extends obsidian_1.Plugin {
         const { customFontUrl, customFontFamily } = this.settings;
         if (!customFontUrl || !customFontFamily)
             return;
+        const normalizedUrl = customFontUrl.trim();
+        if (!normalizedUrl.startsWith('https://'))
+            return;
         let styleEl = document.getElementById(CUSTOM_FONT_STYLE_ID);
         if (!styleEl) {
             styleEl = document.createElement('style');
@@ -164,7 +167,7 @@ class TypingTrackerPlugin extends obsidian_1.Plugin {
             document.head.appendChild(styleEl);
         }
         const family = this.escapeCssString(customFontFamily.trim());
-        const url = this.escapeCssString(customFontUrl.trim());
+        const url = this.escapeCssString(normalizedUrl);
         styleEl.textContent = `
             @font-face {
                 font-family: '${family}';
@@ -301,12 +304,14 @@ class TypingTrackerSettingTab extends obsidian_1.PluginSettingTab {
         if (this.plugin.settings.fontSource === 'custom') {
             new obsidian_1.Setting(containerEl)
                 .setName('Custom font URL')
-                .setDesc('Enter the URL of your custom font')
+                .setDesc('Enter an HTTPS URL for your custom font')
                 .addText(text => text
                 .setValue(this.plugin.settings.customFontUrl)
                 .setPlaceholder('https://example.com/font.ttf')
                 .onChange(async (value) => {
-                this.plugin.settings.customFontUrl = value;
+                const trimmedValue = value.trim();
+                this.plugin.settings.customFontUrl =
+                    trimmedValue && trimmedValue.startsWith('https://') ? trimmedValue : '';
                 await this.plugin.saveSettings();
                 this.plugin.loadCustomFont();
                 this.plugin.updateFonts();
