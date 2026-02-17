@@ -1,0 +1,49 @@
+.typing-tracker-timestamp {
+    position: absolute;
+    left: 40px;
+    top: 1.5em;
+    font-weight: 700;
+    opacity: 0.85;
+    pointer-events: none;
+    user-select: none;
+    padding: 4px 8px;
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    font-size: 0.9em;
+    z-index: 1000;
+}
+
+.typing-tracker-timestamp.rgb-animation {
+    animation: rgb-gradient 3s linear infinite;
+}
+
+.typing-tracker-timestamp.single-color {
+    color: var(--custom-color);
+}
+
+.typing-tracker-timestamp.static-gradient {
+    background: var(--custom-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.typing-tracker-timestamp.animated-gradient {
+    animation: custom-gradient 3s linear infinite;
+}
+
+@keyframes rgb-gradient {
+    0% { color: rgb(255, 0, 0); }
+    16% { color: rgb(255, 165, 0); }
+    33% { color: rgb(0, 255, 0); }
+    50% { color: rgb(0, 127, 255); }
+    66% { color: rgb(0, 0, 255); }
+    83% { color: rgb(75, 0, 130); }
+    100% { color: rgb(255, 0, 0); }
+}
+
+@keyframes custom-gradient {
+    0% { color: var(--gradient-start); }
+    50% { color: var(--gradient-end); }
+    100% { color: var(--gradient-start); }
+}
